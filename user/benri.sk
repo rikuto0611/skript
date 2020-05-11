@@ -10,3 +10,84 @@ command /craft:
     trigger:
         open workbench to player
         exit
+
+command /eleuse [<text>]:
+	description: elevator cityzen向け
+	trigger:
+		#/ele home1とかでてれぽーとする
+		if {elevator.::%arg-1%} is set:
+			teleport player to {elevator.::%arg-1%}
+		else:
+			send "そのホームは登録されていません。"
+
+
+
+command /elevator [<text>] [<text>]:
+	description: elevator
+	permission: admin
+	aliases:/ele
+	executable by: players
+	trigger:
+		if arg-1 is not set:
+			send "[/ele help]でヘルプを開く"
+			exit
+
+		#/ele clear home1 とかでホームを消す
+		if arg-1 is "clear":
+			if arg-2 is "all":
+				clear {elevator.::*}
+				send "all clear!"
+				exit
+			if arg-2 is not set:
+				send "どのホームを消すかわかりません。"
+				exit
+			if arg-2 is set:
+				if {elevator.::%arg-2%} is set:
+					clear {elevator.::%arg-2%}
+					send "%arg-2%を消しました！"
+					exit
+				else:
+					send "そのホームはありません。"
+					exit
+			else:
+				send "技術的なエラーです"
+				exit
+			exit
+		#/eles set eles1 とかでホームセットする
+		if arg-1 is "set":
+			if arg-2 is not set:
+				send "名前を決めてください"
+				exit
+			if arg-2 is "help" or "set" or "clear" or "list":
+				send "その名前はダメです"
+				exit
+			if arg-2 is set:
+				if {elevator.::%arg-2%} is set:
+					send "そのホームは追加されています。"
+				else:
+					set {elevator.::%arg-2%} to location of player
+					send "ホーム[%arg-2%]を追加しました"
+			else:
+				send "技術的なエラーです"
+				exit
+			exit
+		#/ele help	でヘルプを開く
+		if arg-1 is "help":
+			send "/ele set [ホーム名]　でホームをセットする。"
+			send "/ele [ホーム名]　でホームにテレポートする。"
+			send "/ele clear [all/ホーム名]　でホームを削除する。"
+			send "/ele list　でホーム一覧を見る"
+			send "/ele help　でヘルプを開く。"
+			exit
+		#/ele list でリストを開く
+		if arg-1 is "list":
+			send "ホームを表示します"
+			loop {elevator.::*}:
+				send "%loop-index%"
+			exit
+
+		#/ele home1とかでてれぽーとする
+		if {elevator.::%arg-1%} is set:
+			teleport player to {elevator.::%arg-1%}
+		else:
+			send "そのエレベーターは登録されていません。"

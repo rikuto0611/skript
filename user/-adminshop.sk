@@ -8,4 +8,4 @@ on inventory click:
   cancel event
     if event-item is stone named "yeah":
       send "Yeah" to player
-      send "test1"
+      send "test12"

@@ -1,0 +1,10 @@
+command /adminshop :
+	trigger:
+		open chest with 6 row named "adminshop" to player
+		set slot 0 of player's current inventory to dirt named "dirt"
+
+on inventory click:
+  clicked slot is 0
+  cancel event
+    if event-item is stone named "yeah":
+      send "Yeah" to player

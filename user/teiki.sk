@@ -1,0 +1,15 @@
+#サーバーメッセージ
+on join:
+	set the join message to "<yellow>%player%さんがサーバーに参加しました。"
+
+on first join:
+	broadcast "<green>初めまして！%player% さん！ようこそTOPPOサーバーへ！"
+
+every hours:
+	broadcast "<yellow><bold>%now%になりました。"
+
+command /tips:
+	trigger:
+		loop 100 times:
+			broadcast "ロビー前のファミマートでは物の売り買いができるよ。"
+			wait 10 Minutes

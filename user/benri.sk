@@ -1,0 +1,12 @@
+#trash
+command /trash:
+    aliases:/t
+    trigger:
+        open chest with 6 row named "TRASH" to player
+        exit
+#craft
+command /craft:
+    aliases:/c
+    trigger:
+        open workbench to player
+        exit

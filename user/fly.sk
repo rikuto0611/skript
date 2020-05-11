@@ -1,0 +1,11 @@
+command /fly:
+	permission: admin
+	permission message:あなたは空を飛ぶには徳が足りないようです
+	trigger:
+		set player's flight mode to true
+
+command /unfly:
+	permission: admin
+	permission message:いやどうやって飛んだんだ？
+	trigger:
+		set player's flight mode to false

@@ -1,0 +1,101 @@
+#
+# A simple home script which allows players with the permission 'skript.home' to
+# define a home location with /sethome and teleport to that location whenever they want to with /home.
+#
+
+command /home [<text>] [<text>]:
+	description: home
+	permission: skript.home
+	executable by: players
+	trigger:
+		if arg-1 is "clear":
+			if arg-2 is "all":
+				if {homes.%player%.name1} is set:
+					send "%{homes.%player%.name1}%を消しました。"
+				if {homes.%player%.name2} is set:
+					send "%{homes.%player%.name2}%を消しました。"
+				clear {homes.%player%.location1}
+				clear {homes.%player%.location2}
+				clear {homes.%player%.name1}
+				clear {homes.%player%.name2}
+				exit
+			if arg-2 is not set:
+				send "どのホームを消すかわかりません。"
+				exit
+			if arg-2 is set:
+				if {homes.%player%.name1} is arg-2:
+					send "[%arg-2%]を削除しました。"
+					clear {homes.%player%.name1}
+					clear {homes.%player%.location1}
+				else if {homes.%player%.name2} is arg-2:
+					send "[%arg-2%]を削除しました。"
+					clear {homes.%player%.name2}
+					clear {homes.%player%.location2}
+				else:
+					send "そのホームはありません。"
+			exit
+		#/home set home1 とかでホームセットする
+		else if arg-1 is "set":
+			if arg-2 is not set:
+				send "名前を決めてください"
+				exit
+			if arg-2 is "help" or "set" or "clear" or "list":
+				send "その名前はダメです"
+				exit
+			if arg-2 is set:
+				if arg-2 is {homes.%player%.name1} or {homes.%player%.name2}:
+					send "違う名前にしてください！"
+					exit
+				if {homes.%player%.name1} is not set:
+					set {homes.%player%.location1} to location of player
+					set {homes.%player%.name1} to arg-2
+					send "<grey>%location of player%<reset>に[%arg-2%]を設定しました！"
+					exit
+				else if {homes.%player%.name2} is not set:
+					set {homes.%player%.location2} to location of player
+					set {homes.%player%.name2} to arg-2
+					send "<grey>%location of player%<reset>に[%arg-2%]を設定しました！"
+					exit
+				else:
+					send "これ以上ホームを追加できません。"
+					exit
+			else:
+				send "技術的なエラーです"
+				exit
+			exit
+		#/home home1とかでてれぽーとする
+		else if arg-1 is {homes.%player%.name1}:
+			send "%{homes.%player%.name1}%にテレポートします"
+			teleport player to {homes.%player%.location1}
+			exit
+
+		else if arg-1 is {homes.%player%.name2}:
+			send "%{homes.%player%.name2}%にテレポートします"
+			teleport player to {homes.%player%.location2}
+			exit
+		
+		else if arg-1 is not set:
+			send "[/home help]でヘルプを開く"
+			exit
+		#/home help	でヘルプを開く
+		else if arg-1 is "help":
+			send "/home set [ホーム名]　でホームをセットする。"
+			send "/home [ホーム名]　でホームにテレポートする。"
+			send "/home clear [all/ホーム名]　でホームを削除する。"
+			send "/home list　でホーム一覧を見る"
+			send "/home help　でヘルプを開く。"
+
+		else if arg-1 is "list":
+			send "ホームを表示します"
+			if {homes.%player%.name1} is set:
+				send "%{homes.%player%.name1}%"
+			else:
+				send "<grey>none<reset>"
+
+			if {homes.%player%.name2} is set:
+				send "%{homes.%player%.name2}%" 
+			else:
+				send "<grey>none<reset>"
+
+		else:
+			send "/home help　でヘルプを開く。"

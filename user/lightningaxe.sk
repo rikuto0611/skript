@@ -1,0 +1,11 @@
+on rightclick:
+    name of player's tool is "&4アラー"
+    player's tool is stone sword
+    strike lightning at the target entity
+    strike lightning at the target block
+
+command /allra:
+  permission:admin
+  permission message:君に神になる覚悟があるのか？
+  trigger:
+    give 1 of unbreakable stone Sword of sharpness 666 and Sweeping Edge 666 named "&4アラー" to player

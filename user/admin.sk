@@ -1,0 +1,95 @@
+command /gm [<integer>]:
+    permission: admin
+    usage:/gm <integer>
+    trigger:
+        if arg-1 is not set:
+            set the player's gamemode to creative
+            execute player command "/god"
+        if arg-1 is 0:
+            set the player's gamemode to survival
+
+        if arg-1 is 1:
+            set the player's gamemode to creative
+
+        if arg-1 is 2:
+            set the player's gamemode to adventure
+        
+        if arg-1 is 3:
+            set the player's gamemode to spectator
+
+#省略
+command /sr:
+    trigger:
+        execute player command "sk reload scripts"
+        exit
+
+command /phome [<text>] [<text>]:
+	description: home
+	permission: admin
+	aliases:/p
+	executable by: players
+	trigger:
+		if arg-1 is not set:
+			send "[/phome help]でヘルプを開く"
+			exit
+
+		#/phome clear home1 とかでホームを消す
+		if arg-1 is "clear":
+			if arg-2 is "all":
+				clear {phomes.%player%.::*}
+				send "all clear!"
+				exit
+			if arg-2 is not set:
+				send "どのホームを消すかわかりません。"
+				exit
+			if arg-2 is set:
+				if {phomes.%player%.::%arg-2%} is set:
+					clear {phomes.%player%.::%arg-2%}
+					send "%arg-2%を消しました！"
+					exit
+				else:
+					send "そのホームはありません。"
+					exit
+			else:
+				send "技術的なエラーです"
+				exit
+			exit
+		#/phomes set phomes1 とかでホームセットする
+		if arg-1 is "set":
+			if arg-2 is not set:
+				send "名前を決めてください"
+				exit
+			if arg-2 is "help" or "set" or "clear" or "list":
+				send "その名前はダメです"
+				exit
+			if arg-2 is set:
+				if {phomes.%player%.::%arg-2%} is set:
+					send "そのホームは追加されています。"
+				else:
+					set {phomes.%player%.::%arg-2%} to location of player
+					send "ホーム[%arg-2%]を追加しました"
+			else:
+				send "技術的なエラーです"
+				exit
+			exit
+		#/phome help	でヘルプを開く
+		if arg-1 is "help":
+			send "/phome set [ホーム名]　でホームをセットする。"
+			send "/phome [ホーム名]　でホームにテレポートする。"
+			send "/phome clear [all/ホーム名]　でホームを削除する。"
+			send "/phome list　でホーム一覧を見る"
+			send "/phome help　でヘルプを開く。"
+			exit
+		#/phome list でリストを開く
+		if arg-1 is "list":
+			send "ホームを表示します"
+			loop {phomes.%player%.::*}:
+				send "%loop-index%"
+			exit
+
+		#/phome home1とかでてれぽーとする
+		if {phomes.%player%.::%arg-1%} is set:
+			send "%arg-1%にテレポートします"
+			teleport player to {phomes.%player%.::%arg-1%}
+		else:
+			send "そのホームは登録されていません。"

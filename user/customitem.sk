@@ -1,0 +1,78 @@
+#famichiken
+on eat of rotten flesh:
+    if name of player's tool is {custom.item.famichicken}:
+        add 5 to player's health
+        apply potion of Regeneration 5 to the player for 10 seconds
+        exit
+    
+    if name of player's tool is {custom.item.spicychicken}:
+        add 3 to player's health
+        ignite the player for 2 seconds
+        wait 2 seconds
+        apply potion of fire resistance 5 to the player for 60 seconds
+
+on rightclick:
+    if name of player's tool is {custom.item.engineersword}:
+        add -10 to target entity's health
+        strike lightning at the target entity
+        strike lightning at the target block
+        shoot an arrow
+
+on leftclick:
+    if name of player's tool is {custom.item.engineersword}:
+        kill all phantoms and drowneds in radius 50 around player
+
+command /customitem [<text>] [<text>]:
+    permission:admin
+    trigger:
+        set {_item} to name of player's tool
+
+        if arg-1 is "set":
+            if arg-2 is not set:
+                send "名前を付けてください"
+                exit
+            else if {custom.item.%arg-2%} is set:
+                send "その名前[%arg-2%]はもう登録されています。他の名前にしてください"
+                exit
+            else:
+                if {custom.item.%{_item}%} is set:
+                    send "そのアイテムは登録されています"
+                    exit
+                else:
+                    set {custom.item.%{_item}%} to name of player's tool        #.ファミチキン←ファミチキン
+                    set {custom.item.%{_item}%.arg} to arg-2                    #.ファミチキン.arg←famichicken
+                    set {custom.item.%arg-2%} to name of player's tool          #.famichicken←ファミチキン
+                    set {custom.item.%{_item}%.item} to player's tool            #.ファミチキン.item←腐肉
+                    send "%{custom.item.%{_item}%}%%{reset}%を登録しました。"
+                    exit
+
+        if arg-1 is "clear":
+            if {custom.item.%{_item}%} is not set:
+                send "そのアイテム[%{_item}%%{reset}%]は登録されていません。"
+                exit
+            else:
+                send "%{custom.item.%{_item}%}%%{reset}%を削除しました。"
+                set {_itemarg} to {custom.item.%{_item}%.arg}
+                if {custom.item.%{_itemarg}%} is set:
+                    send "%{_itemarg}%"
+                    clear {custom.item.%{_itemarg}%}
+                    clear {custom.item.%{_item}%}
+                    exit
+                else:
+                    send "not ok"
+                exit
+                
+
+        if arg-1 is "reset":
+            if {reset} is set:
+                send "このコマンドは利用できません。"
+            else:
+                set {reset} to name of player's tool
+
+        else if arg-1 is set:
+            send "/"
+        else:
+            send "技術的なエラーです"
+
+
+

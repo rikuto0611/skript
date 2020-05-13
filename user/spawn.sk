@@ -1,10 +1,11 @@
 Command /setspawn:
- permission: op
- trigger:
-  set {spawn} to location of block at location of player
-  send "%{spawn}%にスポーンをセットしました" to player
+	permission: op
+	trigger:
+		set {spawn} to location of block at location of player
+		send "%{spawn}%にスポーンをセットしました" to player
 
 command /spawn:
- trigger:
-  teleport player to {spawn}
-  send "スポーンにテレポートしました！" to player
+	aliases:/sp
+	trigger:
+		teleport player to {spawn}
+		send "スポーンにテレポートしました！" to player

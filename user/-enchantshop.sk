@@ -1,0 +1,28 @@
+on rightclick on a sign:
+	if line 1 is "[enchantshop]":
+		set line 1 of block to "<dark gray>[EnchantShop]"
+
+on rightclick on a sign:
+	set {_item} to player's tool
+	if line 1 is "<dark gray>[EnchantShop]":
+		if line 2 is "fortune":
+			if {_item} is all pickaxe or all axe or all shovel:
+				if player's tool is enchanted with sharpness 5:
+					send "これ以上エンチャントを足せません！"
+					exit
+				else if {_item} is all axe of fortune 2 or all pickaxe of fortune 2 or all shovel of fortune 2:
+					remove 100 from the player's money
+					enchant the player's tool with fortune 3
+					exit
+				else if player's tool is enchanted with fortune 1:
+					remove 100 from the player's money
+					enchant the player's tool with fortune 2
+					exit
+				else:
+					send "a"
+					remove 100 from the player's money
+					enchant the player's tool with fortune 1
+					exit
+			else:
+				send "そのアイテムにそのエンチャントはつけられません！"
+			

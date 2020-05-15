@@ -1,7 +1,8 @@
-command /fly [<text>]:
+command /fly [<name>]:
 	permission: admin
 	permission message:あなたは空を飛ぶには徳が足りないようです
 	trigger:
+
 		set arg-1 flight mode to true
 
 command /unfly:

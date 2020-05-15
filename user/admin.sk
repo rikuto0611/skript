@@ -93,3 +93,21 @@ command /phome [<text>] [<text>]:
 			teleport player to {phomes.%player%.::%arg-1%}
 		else:
 			send "そのホームは登録されていません。"
+
+command /stopcount:
+	permission: admin
+    trigger:
+        broadcast "30秒後にサーバーが停止します"
+        wait 20 seconds
+        broadcast "10秒後にサーバーが停止します"
+        wait 5 seconds
+        broadcast "5秒後にサーバーが停止します"
+        wait 1 seconds
+        broadcast "4秒後にサーバーが停止します"
+        wait 1 seconds
+        broadcast "3秒後にサーバーが停止します"
+        wait 1 seconds
+        broadcast "2秒後にサーバーが停止します"
+        wait 1 seconds
+        broadcast "1秒後にサーバーが停止します"
+        execute console command "stop"

@@ -2,8 +2,7 @@ command /fly [<player>]:
 	permission: admin
 	permission message:あなたは空を飛ぶには徳が足りないようです
 	trigger:
-
-		set arg-1 flight mode to true
+		set arg-1's flight mode to true
 
 command /unfly:
 	permission: admin

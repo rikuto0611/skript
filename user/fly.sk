@@ -2,10 +2,20 @@ command /fly [<player>]:
 	permission: admin
 	permission message:あなたは空を飛ぶには徳が足りないようです
 	trigger:
-		set arg-1's flight mode to true
+		if arg-1 is not set:
+			set player's flight mode to true
+			exit
+		else:
+			set arg-1's flight mode to true
+			exit
 
-command /unfly:
+command /unfly [<player>]:
 	permission: admin
 	permission message:いやどうやって飛んだんだ？
 	trigger:
-		set player's flight mode to false
+		if arg-1 is not set:
+			set player's flight mode to false
+			exit
+		else:
+			set arg-1's flight mode to false
+			exit

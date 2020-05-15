@@ -5,7 +5,7 @@ Command /setspawn:
 		send "%{spawn}%にスポーンをセットしました" to player
 
 command /spawn:
-	aliases:/sp
+	aliases:/ｓぱｗｎ
 	trigger:
 		teleport player to {spawn}
 		send "スポーンにテレポートしました！" to player

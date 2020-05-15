@@ -1,27 +1,27 @@
 command /gm [<integer>]:
-    permission: admin
-    usage:/gm <integer>
-    trigger:
-        if arg-1 is not set:
-            set the player's gamemode to creative
-            execute player command "/god"
-        if arg-1 is 0:
-            set the player's gamemode to survival
+	permission: admin
+	usage:/gm <integer>
+	trigger:
+		if arg-1 is not set:
+			set the player's gamemode to creative
+			execute player command "/god"
+		if arg-1 is 0:
+			set the player's gamemode to survival
 
-        if arg-1 is 1:
-            set the player's gamemode to creative
+		if arg-1 is 1:
+			set the player's gamemode to creative
 
-        if arg-1 is 2:
-            set the player's gamemode to adventure
-        
-        if arg-1 is 3:
-            set the player's gamemode to spectator
+		if arg-1 is 2:
+			set the player's gamemode to adventure
+		
+		if arg-1 is 3:
+			set the player's gamemode to spectator
 
 #省略
 command /sr:
-    trigger:
-        execute player command "sk reload scripts"
-        exit
+	trigger:
+		execute player command "sk reload scripts"
+		exit
 
 command /phome [<text>] [<text>]:
 	description: home
@@ -96,18 +96,18 @@ command /phome [<text>] [<text>]:
 
 command /stopcount:
 	permission: admin
-    trigger:
-        broadcast "30秒後にサーバーが停止します"
-        wait 20 seconds
-        broadcast "10秒後にサーバーが停止します"
-        wait 5 seconds
-        broadcast "5秒後にサーバーが停止します"
-        wait 1 seconds
-        broadcast "4秒後にサーバーが停止します"
-        wait 1 seconds
-        broadcast "3秒後にサーバーが停止します"
-        wait 1 seconds
-        broadcast "2秒後にサーバーが停止します"
-        wait 1 seconds
-        broadcast "1秒後にサーバーが停止します"
-        execute console command "stop"
+	trigger:
+		broadcast "30秒後にサーバーが停止します"
+		wait 20 seconds
+		broadcast "10秒後にサーバーが停止します"
+		wait 5 seconds
+		broadcast "5秒後にサーバーが停止します"
+		wait 1 seconds
+		broadcast "4秒後にサーバーが停止します"
+		wait 1 seconds
+		broadcast "3秒後にサーバーが停止します"
+		wait 1 seconds
+		broadcast "2秒後にサーバーが停止します"
+		wait 1 seconds
+		broadcast "1秒後にサーバーが停止します"
+		execute console command "stop"

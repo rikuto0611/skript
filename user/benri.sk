@@ -12,4 +12,4 @@ command /craft:
         exit
 
 on bed enter:
-	set time to 0
+	set time to 6:00

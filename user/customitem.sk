@@ -20,7 +20,7 @@ on rightclick:
 
 on leftclick:
     if name of player's tool is {custom.item.engineersword}:
-        kill all phantoms and drowneds and bat in radius 50 around player
+        kill all phantoms drowneds and bat in radius 50 around player
 
 command /customitem [<text>] [<text>]:
     permission:admin

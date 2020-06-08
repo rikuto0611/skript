@@ -1,0 +1,4 @@
+on sign change:
+	line 1 is "[shop]"
+	cancel the event
+	exit

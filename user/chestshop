@@ -1,4 +1,4 @@
 on sign change:
-	line 1 is "[shop]"
-	set line 1 to "error"
+	if line 1 is "[shop]":
+		set line 1 of block to "<red>[ERROR]"
 	exit

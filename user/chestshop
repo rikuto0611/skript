@@ -1,4 +1,4 @@
 on sign change:
 	line 1 is "[shop]"
-	cancel the event
+	set line 1 to "error"
 	exit

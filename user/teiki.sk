@@ -1,6 +1,7 @@
 #サーバーメッセージ
 on join:
 	set the join message to "<gray>%now%<yellow>%player%さんがサーバーに参加しました。"
+	execute console command "stopfire"
 
 on first join:
 	broadcast "<green>初めまして！%player% さん！ようこそTOPPOサーバーへ！"

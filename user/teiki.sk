@@ -2,6 +2,9 @@
 on join:
 	set the join message to "<gray>%now%<yellow>%player%さんがサーバーに参加しました。"
 
+on logout
+	set the left message to "<gray>%now%<yellow>%player%さんがサーバーを去りました。"
+
 on first join:
 	broadcast "<green>初めまして！%player% さん！ようこそTOPPOサーバーへ！"
 

